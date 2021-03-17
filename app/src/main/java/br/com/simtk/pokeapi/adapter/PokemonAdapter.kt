@@ -38,9 +38,12 @@ class PokemonAdapter(
         fun bindView(item: Pokemons) {
             val imgPokemon = (itemView).findViewById<ImageView>(R.id.img_pokemon)
             val tv_nomePokemon = (itemView).findViewById<TextView>(R.id.tv_nomePokemon)
+            val tv_idPokemon = (itemView).findViewById<TextView>(R.id.tv_idPokemon)
 
             tv_nomePokemon.text = item.name
             Glide.with(context).load(item.imageURL).centerCrop().fitCenter().into(imgPokemon)
+            tv_idPokemon.text = item.idPokemon.toString()
+
 
             //inicializando itens click
             initializer(item, listener)
@@ -49,9 +52,11 @@ class PokemonAdapter(
         private fun initializer(item: Pokemons, action: OnItemClickListener) {
             val imgPokemon = (itemView).findViewById<ImageView>(R.id.img_pokemon)
             val tv_nomePokemon = (itemView).findViewById<TextView>(R.id.tv_nomePokemon)
+            val tv_idPokemon = (itemView).findViewById<TextView>(R.id.tv_idPokemon)
 
             tv_nomePokemon.text = item.name
             Glide.with(context).load(item.imageURL).centerCrop().fitCenter().into(imgPokemon)
+            tv_idPokemon.text = item.idPokemon.toString()
             itemView.setOnClickListener{
                 action.onItemClicked(adapterPosition, item)
             }

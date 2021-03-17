@@ -1,66 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="8dp"
         android:layout_margin="20dp">
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
             app:cardCornerRadius="8dp"
             android:elevation="8dp">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center">
-
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:id="@+id/img_pokemon"/>
 
-                <TextView
-                    android:id="@+id/tv_nomePokemon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:background="@drawable/texto"
-                    android:textColor="@color/white"
-                    android:hint="@string/nomePokemon"
-                    android:layout_gravity="center"
-                    android:gravity="center"/>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_nomePokemon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:background="@drawable/texto"
+                        android:textColor="@color/white"
+                        android:layout_marginEnd="5dp"
+                        android:hint="@string/nomePokemon"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tv_idPokemon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:background="@drawable/texto"
+                        android:textColor="@color/white"
+                        android:hint="@string/idPokemon"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+                </LinearLayout>
             </LinearLayout>
-
-
-
-
-
-
-
-
         </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
-
     </GridLayout>
-
-
 </RelativeLayout>

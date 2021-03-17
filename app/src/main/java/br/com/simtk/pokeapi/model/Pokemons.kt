@@ -4,11 +4,6 @@ data class Pokemons(
 
     val name: String?,
     val url: String,
-    var imageURL: String?
-
-) {
-
-
-
-
-}
+    var imageURL: String?,
+    var idPokemon:Int?
+    )
