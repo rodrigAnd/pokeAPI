@@ -10,4 +10,8 @@
     <color name="img">#A7170C</color>
     <color name="amarelo">#F0E3B5</color>
     <color name="text">#2D6654</color>
+    <color name="fundo">#EBF3F3</color>
+    <color name="fundoGrid">#FFE8E6</color>
+    <color name="fundoText">#F3EACA</color>
+    <color name="textFundo">#B5F0E2</color>
 </resources>

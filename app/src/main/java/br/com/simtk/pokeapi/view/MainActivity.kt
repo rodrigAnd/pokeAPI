@@ -19,24 +19,20 @@ import br.com.simtk.pokeapi.model.Pokemon
 import br.com.simtk.pokeapi.model.Pokemons
 import br.com.simtk.pokeapi.retrofit.PokemonAPI
 import br.com.simtk.pokeapi.retrofit.PokemonService
+import br.com.simtk.pokeapi.util.Util
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-private lateinit var rv_list_pokemon: RecyclerView
-private lateinit var progress_circular: ProgressBar
-
-private lateinit var list: List<Pokemons>
-
-private var TAG = "MainActivity"
-
-//retofit
-
-
 class MainActivity : AppCompatActivity(), OnItemClickListener {
+
+    private lateinit var rv_list_pokemon: RecyclerView
+    private lateinit var progress_circular: ProgressBar
+    private lateinit var list: List<Pokemons>
+    private var TAG = "MainActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,6 +40,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         listPokemon()
     }
 
+    //iniciando componentes lateinit var
     private fun initComponents() {
         rv_list_pokemon = findViewById(R.id.rv_list_pokemon)
         progress_circular = findViewById(R.id.progress_circular)
@@ -59,48 +56,45 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     }
 
-    fun listPokemon(limit: Int= 151){
+    //recebendo dados da API
+    fun listPokemon(limit: Int = 151) {
         val call = PokemonService.service.listPokemon(limit)
 
         call.enqueue(object : Callback<Pokemon?> {
             override fun onResponse(call: Call<Pokemon?>, response: Response<Pokemon?>) {
                 if (response.isSuccessful) {
+                    val util = Util(response.body()?.results)
                     response.body()?.results.let {
-                        for (i: Int in 0..149) {
-                            val number = it?.get(i)?.url?.substring(34)
-                            val newNUmber = number?.replace("/", "")?.toInt()
-                            it?.get(i)?.imageURL =
-                                "https://pokeres.bastionbot.org/images/pokemon/$newNUmber.png"
-                            it?.get(i)?.idPokemon = newNUmber
-                        }
+                        util.alterUrl()
                         list = it!!
                         lista()
                     }
                 }
-
             }
 
             override fun onFailure(call: Call<Pokemon?>, t: Throwable) {
-                Toast.makeText(applicationContext, "sem conexão: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "sem conexão: ${t.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }
 
+    //inicianco lista Pokemon
     fun lista() {
         rv_list_pokemon!!.layoutManager = LinearLayoutManager(applicationContext)
-
-        if(progress_circular.isVisible){
-            progress_circular.visibility = View.GONE
-        }
+        verificaProgress()
         rv_list_pokemon!!.adapter = PokemonAdapter(applicationContext, list, this)
     }
+
+
     // implementar pesquisa
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search_, menu)
         val menu_item = menu!!.findItem(R.id.search)
-        if(menu_item !=null){
+
+        if (menu_item != null) {
             val searchView = menu_item.actionView as SearchView
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(newText: String?): Boolean {
 
                     return true
@@ -113,8 +107,6 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
             })
         }
 
-
-
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -122,6 +114,14 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
         return super.onOptionsItemSelected(item)
     }
+
+    //verifca progressBar ATiva
+    fun verificaProgress(){
+        if (progress_circular.isVisible) {
+            progress_circular.visibility = View.GONE
+        }
+    }
+
 
     //abrir detalhes do pokemon
     override fun onItemClicked(position: Int, pokemonClickList: Pokemons?) {

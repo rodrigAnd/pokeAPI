@@ -2,16 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/fundo"
         android:elevation="8dp"
         android:layout_margin="20dp">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="fill"
             app:cardCornerRadius="8dp"
             android:elevation="8dp">
@@ -19,6 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:background="@color/fundo"
+                android:padding="5dp"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center">
                 <ImageView
@@ -30,8 +33,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:orientation="vertical"
                     android:gravity="center">
 
                     <TextView
@@ -40,8 +42,8 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:background="@drawable/texto"
-                        android:textColor="@color/white"
-                        android:layout_marginEnd="5dp"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="10dp"
                         android:hint="@string/nomePokemon"
                         android:layout_gravity="center"
                         android:gravity="center"/>
@@ -51,8 +53,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/texto"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:hint="@string/idPokemon"
                         android:layout_gravity="center"
                         android:gravity="center"/>
