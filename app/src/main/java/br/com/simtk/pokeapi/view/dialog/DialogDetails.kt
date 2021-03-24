@@ -1,4 +1,4 @@
-package br.com.simtk.pokeapi.view
+package br.com.simtk.pokeapi.view.dialog
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
